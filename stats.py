@@ -90,4 +90,5 @@ def add_signals(df):
     df4.columns = list(df4.columns[:1]) + ['opposition_' +x for x in  df4.columns[1:]] 
 
     df5 = pd.merge(df3, df4, on='match_id')
-    return pd.merge(df.drop_duplicates('match_id', keep='first'), df5.drop_duplicates('match_id'), on='match_id').sort_values('match_utc_time')
+    
+    return pd.merge(df.drop_duplicates('match_id', keep='last'), df5.drop_duplicates('match_id',keep='last'), on='match_id').sort_values('match_utc_time')

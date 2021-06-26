@@ -1,7 +1,4 @@
-import numpy as np
-import pandas as pd 
 import os
-import json 
 from pull_data import sql_to_dataframe
 from stats import add_signals
 from add_bets import make_bet_files
@@ -10,6 +7,11 @@ rds_host  = os.getenv('RDS_HOST')
 rds_username = os.getenv('RDS_USERNAME')
 rds_user_pwd = os.getenv('RDS_USER_PWD')
 rds_db_name = os.getenv('RDS_DB_NAME')
+
+# rds_host  = 'database-1.comg0aeojiea.ca-central-1.rds.amazonaws.com'
+# rds_username = 'postgres'
+# rds_user_pwd = '02022729'
+# rds_db_name = 'postgres'
 
 
 def lambda_handler(event, context):
@@ -22,12 +24,5 @@ def lambda_handler(event, context):
     df = add_signals(df)
     print('signals added')
     make_bet_files(df)
-    # import boto3
-    # s3 = boto3.resource('s3')
-    # bucket_name = 'baseball-bets'
-    
-
-    # object = s3.Object(bucket_name, 'tryme.json')
-    # object.put(Body=json.dumps({"value":"key"}).encode())
 
     return {'status':200}
