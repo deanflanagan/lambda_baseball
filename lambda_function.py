@@ -8,12 +8,6 @@ rds_username = os.getenv('RDS_USERNAME')
 rds_user_pwd = os.getenv('RDS_USER_PWD')
 rds_db_name = os.getenv('RDS_DB_NAME')
 
-# rds_host  = 'database-1.comg0aeojiea.ca-central-1.rds.amazonaws.com'
-# rds_username = 'postgres'
-# rds_user_pwd = '02022729'
-# rds_db_name = 'postgres'
-
-
 def lambda_handler(event, context):
     conn_string = "host=%s user=%s password=%s dbname=%s" % \
                     (rds_host, rds_username, rds_user_pwd, rds_db_name)
